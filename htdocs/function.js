@@ -6,6 +6,8 @@ $(function() {
         $('#relogio span').html(Math.floor ((conrodtime - apitime) / 86400000))
     });
 
+    $('#inicio-sec').fadeIn().removeClass('hidden');
+
     $('header span').click(menuToggle);
 
     $('header nav a').click(function(event){
@@ -19,6 +21,8 @@ $(function() {
         $(event.target).addClass('active');
 
         $('section:not(hidden)').fadeOut().addClass('hidden');
+
+        $('html, body').scrollTop(0);
     
         $(targetPage).fadeIn().removeClass('hidden');
 

@@ -24,13 +24,13 @@
             <nav class="nav flex-column">
                 <a id="inicio" class="nav-link active">Início</a>
                 <a id="kit" class="nav-link disabled" aria-disabled="true">Kit CONRODE</a>
-                <a id="inscricao" class="nav-link disabled" aria-disabled="true">Inscrições (1º lote)</a>
+                <a id="inscricao" class="nav-link" aria-disabled="true">Inscrições (1º lote)</a>
                 <a id="desafios" class="nav-link disabled" aria-disabled="true">Desafios</a>
                 <a id="sobre" class="nav-link">Sobre</a>
             </nav>
         </header>
 
-        <section id="inicio-sec">
+        <section id="inicio-sec" class="hidden">
             <div class="vcentering" style="width: 100%; text-align: center;">
 
                 <img id="conrod-log" src="./img/CONCROD.2020.plain.svg">
@@ -42,46 +42,125 @@
             </div>
         </section>
 
-        <section id="sobre-sec" class="container hidden">
-            <h1>O CONRODE</h1>
-            <p>
-                O CONRODE é o encontro regional da 10a Oficialaria Executiva do 
-                Supremo Conselho da Bahia.
-            </p>
-            <p>
-                Trata-se de uma momento para reencontrar os irmãos de toda a região
-                e nos preparmos para os desafios do novo ano.
-            </p>
-            <p>
-                Em 2020, o CONROD será realizado na cidade de Sobradinho com a
-                organização do Capítulo Guardiões Templários do Grande Lago.
-            </p>
-            <h2>Local</h2>
-            <p>
-                O CONROD 2020 acontecerá no CEBEC, um espaço criado pela prefeitura
-                para que os jovens da cidade tenham diversas atividades educativas e
-                seja preparados para o futuro. Tudo a ver com a Ordem, não é mesmo?
-            </p>
-                <a class="btn btn-outline-primary" style="font-weight: 400;" target="_blank" href="https://www.google.com/maps/place/9%C2%B028'33.5%22S+40%C2%B048'24.0%22W/@-9.4759646,-40.8072524,258m/data=!3m2!1e3!4b1!4m6!3m5!1s0x0:0x0!7e2!8m2!3d-9.4759663!4d-40.80666">
-                    📌 Clique aqui para ver como chegar lá!
-                </a>
-            
+        <section id="sobre-sec">
+            <div  class="container">
+                <h1>O CONRODE</h1>
+                <p>
+                    O CONRODE é o encontro regional da 10a Oficialaria Executiva do 
+                    Supremo Conselho da Bahia.
+                </p>
+                <p>
+                    Trata-se de uma momento para reencontrar os irmãos de toda a região
+                    e nos preparmos para os desafios do novo ano.
+                </p>
+                <p>
+                    Em 2020, o CONROD será realizado na cidade de Sobradinho com a
+                    organização do Capítulo Guardiões Templários do Grande Lago.
+                </p>
+                <h2>Local</h2>
+                <p>
+                    O CONROD 2020 acontecerá no CEBEC, um espaço criado pela prefeitura
+                    para que os jovens da cidade tenham diversas atividades educativas e
+                    seja preparados para o futuro. Tudo a ver com a Ordem, não é mesmo?
+                </p>
+                    <a class="btn btn-outline-primary" style="font-weight: 400;" target="_blank" href="https://www.google.com/maps/place/9%C2%B028'33.5%22S+40%C2%B048'24.0%22W/@-9.4759646,-40.8072524,258m/data=!3m2!1e3!4b1!4m6!3m5!1s0x0:0x0!7e2!8m2!3d-9.4759663!4d-40.80666">
+                        📌 Clique aqui para ver como chegar lá!
+                    </a>
+            </div>
         </section>
 
-        <section id="kit-sec" class="container hidden">
-            <h1>Kit CONRODE</h1>
+        <section id="kit-sec">
+            <div  class="container">
+                <h1>Kit CONRODE</h1>
+            </div>
     
         </section>
 
-        <section id="desafios-sec" class="container hidden">
-            <h1>Desafios</h1>
+        <section id="desafios-sec">
+            <div  class="container">
+                <h1>Desafios</h1>
+            </div>
 
         </section>
 
         
-        <section id="inscricao-sec" class="container hidden">
-            <h1>Inscrição</h1>
-    
+        <section id="inscricao-sec">
+            <div  class="container container-fluid">
+                <h1>Inscrição</h1>
+
+                <form>
+                        <div class="input-group input-group-lg mb-3">
+                          <div class="input-group-prepend">
+                            <label class="input-group-text" for="inputGroupSelect01">ORG</label>
+                          </div>
+                          <select class="custom-select" id="inputGroupSelect01">
+                            <option value="Capítulo Casa Nova">Capítulo Casa Nova</option>
+                            <option value="Capítulo Juazeiro">Capítulo Juazeiro</option>
+                            <option value="Capítulo Remanso">Capítulo Remanso</option>
+                            <option value="Capítulo Guardiões Templários do Grande Lago">GTGL 943</option>
+
+                            <option value="GCE">GCE</option>
+                            <option value="GC">Grande Conselho</option>
+                            <option value="Outras">Outras</option>
+                          </select>
+                        </div>
+
+                        <div style="margin-bottom: 1rem;" class="input-group input-group-lg btn-group btn-group-lg btn-group-toggle" data-toggle="buttons">
+                            <label class="btn btn-secondary active">
+                                <input class="form-control" type="radio" name="tinscr" id="demolay" autocomplete="off" checked>DeMolay
+                            </label>
+                            <label class="btn btn-secondary">
+                                <input class="form-control" type="radio" name="tinscr" id="macom" autocomplete="off">Maçom
+                            </label>
+                            <label class="btn btn-secondary">
+                                <input class="form-control" type="radio" name="tinscr" id="outro" autocomplete="off">Outro
+                            </label>
+                        </div>
+
+                        <div class="input-group input-group-lg mb-3">
+                            <div class="input-group-prepend">
+                                <label class="input-group-text" for="sisdm">ID DeMolay</label>
+                            </div>
+                            <input id="nome" type="number" class="form-control" aria-label="Text input with dropdown button">
+                        </div>
+
+                        <div class="input-group input-group-lg mb-3">
+                            <div class="input-group-prepend">
+                                <label class="input-group-text" for="nome">Nome</label>
+                            </div>
+                            <input id="nome" type="text" class="form-control" aria-label="Text input with dropdown button">
+                        </div>
+
+                        <fieldset class="form-group form-group-lg">
+                            <legend>Kit CONROD</legend>
+
+                            <div class="btn-group btn-group-lg btn-group-toggle"  data-toggle="buttons" role="group" aria-label="...">.
+
+                                <label class="btn btn-secondary active">
+                                    <input type="checkbox" checked autocomplete="off"> Camisa
+                                </label>
+                                <label class="btn btn-secondary active">
+                                    <input type="checkbox" checked autocomplete="off"> Caneca
+                                </label>
+                                <label class="btn btn-secondary active">
+                                    <input type="checkbox" checked autocomplete="off"> Pin
+                                </label>
+                            </div>
+
+                            <div style="margin-top: 1rem;" class="btn-group btn-group-lg">
+                                    <button class="btn btn-lg btn-primary">Kit completo</button>
+                                    <button class="btn btn-lg btn-danger">Sem o kit</button>
+                            </div>
+                            
+                            
+                        </fieldset>
+
+                        <label>Total: <span>R$ 60,00</span>.</label>
+                        <button class="btn btn-success btn-lg">Enviar</button>
+                        
+
+                </form>
+            </div>
         </section>
     </body>
 

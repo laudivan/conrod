@@ -25,7 +25,13 @@ p {
     text-align: justify;
 }
 
-.hidden { visibility: hidden; max-height: 0 !important; height: 0 !important;}
+.hidden { 
+    visibility: hidden; 
+    min-height: 0 !important;
+    max-height: 0 !important; 
+    height: 0 !important; 
+    padding: 0!important;
+}
 
 .hcentering { margin: 0 auto; }
 
@@ -37,6 +43,7 @@ p {
 
 
 #inicio-sec {
+    position: fixed;
     padding: 0 !important;
     margin: 0 !important;
 }
@@ -131,7 +138,7 @@ header span {
     padding: 0.3rem 0.7rem 0.3rem;
     width: 5rem;
     height: 5rem;
-    color: #05181f;
+    color: #98aeb6;
     margin-top: -0.6rem;
 
     -webkit-transition: all 0.5s ease;
@@ -152,3 +159,29 @@ header.active span {
 }
 
 h1, h2, h3 { color: #fff; text-align: center;}
+
+label {
+    color: #fff;
+    font-weight: 300;
+}
+
+.custom-switch {
+    height: 3rem;
+}
+
+label.custom-control-label::before {
+    height: 2.7rem !important;
+    width: 3.5rem !important;
+}
+
+label.custom-control-label::after {
+    height: 2.5rem !important;
+    width: 2.5rem !important;
+    border-radius: 50%;
+}
+
+fieldset legend {
+    font-family: 'IBM Plex Sans', sans-serif; 
+    font-weight: 300;
+    color: #98aeb6;
+}
