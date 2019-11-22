@@ -12,15 +12,18 @@ html, body {
     font-size: 1.2rem; 
 }
 
-p {
+p, ul {
     font-family: 'IBM Plex Sans', sans-serif; 
     font-weight: 100; 
     font-size: 1.2rem;
 
     background: #fff;
-    color: #37383a;
-    padding: 0.5rem;
+    color: #222224;
     border-radius: 0.5rem;
+}
+
+p{
+    padding: 0.5rem;
 
     text-align: justify;
 }
@@ -56,14 +59,8 @@ section {
     padding-top: 5rem;
     padding-bottom: 3rem;
 
-
-    background-repeat: no-repeat;
-    background: #104b6f;
-    background: -moz-linear-gradient(top,  #104b6f 0%, #05181f 59%);
-    background: -webkit-linear-gradient(top,  #104b6f 0%,#05181f 59%);
-    background: linear-gradient(to bottom,  #104b6f 0%,#05181f 59%);
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#104b6f', endColorstr='#05181f',GradientType=0 );
-
+    background: rgb(16,75,111);
+    background: linear-gradient(180deg, rgba(16,75,111,1) 0%, rgba(5,24,31,1) 100%); 
 }
 
 
@@ -180,8 +177,46 @@ label.custom-control-label::after {
     border-radius: 50%;
 }
 
+fieldset {
+    background: rgba(0,0,0,0.2);
+    border-radius: 10px;
+    padding: 2rem;
+}
+
 fieldset legend {
     font-family: 'IBM Plex Sans', sans-serif; 
-    font-weight: 300;
+    font-weight: 600;
     color: #98aeb6;
+}
+
+.form-check-input {
+    transform: scale(2);
+}
+
+.comdesconto {
+    color: #28a745 !important;
+}
+
+#resultado span {
+    font-weight: 600;
+    color: #dc3545;
+}
+
+ul li span {
+    font-weight: 300;
+}
+
+.bancos {
+    background: #fff;
+    padding: 0;
+    margin: .178rem;
+    border-radius: 15px;
+}
+
+.bancos div {
+    padding: .8rem;
+}
+
+.bancos img {
+    width: 100%;
 }

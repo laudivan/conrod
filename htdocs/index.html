@@ -8,15 +8,15 @@
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
         <link href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans:100,300,400,600&display=swap" rel="stylesheet"> 
         
-        <link rel="stylesheet" href="stylesheet.css">
+        <link rel="stylesheet" href="./stylesheet.css">
 
         <link rel="shortcut icon" type="image/x-icon" href="./favicon.ico">
-        <link rel="apple-touch-icon" sizes="72x72" href="./img/icon-72x72.png">
-        <link rel="apple-touch-icon" sizes="114x114" href="./img/icon-114x114.png">
-        <link rel="icon" sizes="72x72"href="./img/icon-72x72.png">
-        <link rel="icon" sizes="114x114"href="./img/icon-114x114.png">
-        <meta name="msapplication-square70x70logo" content="./img/icon-70x70.png"/>
-        <meta name="msapplication-square150x150logo" content="./img/icon-150x150.png"/>
+        <link rel="apple-touch-icon" sizes="72x72" href="./icon-72x72.png">
+        <link rel="apple-touch-icon" sizes="114x114" href="./icon-114x114.png">
+        <link rel="icon" sizes="72x72"href="./icon-72x72.png">
+        <link rel="icon" sizes="114x114"href="./icon-114x114.png">
+        <meta name="msapplication-square70x70logo" content="./icon-70x70.png"/>
+        <meta name="msapplication-square150x150logo" content="./icon-150x150.png"/>
     </head>
     <body>
         <header class="">
@@ -30,10 +30,10 @@
             </nav>
         </header>
 
-        <section id="inicio-sec" class="hidden">
+        <section id="inicio-sec">
             <div class="vcentering" style="width: 100%; text-align: center;">
 
-                <img id="conrod-log" src="./img/CONCROD.2020.plain.svg">
+                <img id="conrod-log" src="./CONCROD.2020.plain.svg">
                 <div style="display:block; margin-top: 3rem;">
                     <h3 id="relogio" style="color:#98aeb6;">Faltam <span>0</span> dias!</h3>
                     <div style="color: #fff;">As inscrições estão fechadas, mas prepare-se pois o 1º lote abrirá em breve.</div>
@@ -47,7 +47,7 @@
                 <h1>O CONRODE</h1>
                 <p>
                     O CONRODE é o encontro regional da 10a Oficialaria Executiva do 
-                    Supremo Conselho da Bahia.
+                    Grande Conselho Estadual da Bahia.
                 </p>
                 <p>
                     Trata-se de uma momento para reencontrar os irmãos de toda a região
@@ -88,32 +88,33 @@
             <div  class="container container-fluid">
                 <h1>Inscrição</h1>
 
-                <form>
+                <form id="finscricao">
                         <div class="input-group input-group-lg mb-3">
                           <div class="input-group-prepend">
                             <label class="input-group-text" for="inputGroupSelect01">ORG</label>
                           </div>
-                          <select class="custom-select" id="inputGroupSelect01">
-                            <option value="Capítulo Casa Nova">Capítulo Casa Nova</option>
-                            <option value="Capítulo Juazeiro">Capítulo Juazeiro</option>
-                            <option value="Capítulo Remanso">Capítulo Remanso</option>
-                            <option value="Capítulo Guardiões Templários do Grande Lago">GTGL 943</option>
-
-                            <option value="GCE">GCE</option>
-                            <option value="GC">Grande Conselho</option>
-                            <option value="Outras">Outras</option>
+                          <select name="org" class="custom-select" id="inputGroupSelect01">
+                            <option value="Capítulo Casa Nova - 760">Capítulo Casa Nova</option>
+                            <option value="Capítulo Juazeiro - 338">Capítulo Juazeiro</option>
+                            <option value="Capítulo Remanso - 769">Capítulo Remanso</option>
+                            <option value="Capítulo Petrolina - 023">Capítulo Petrolina</option>
+                            <option value="Capítulo Guerreiros - 490">Capítulo Guerreiros</option>
+                            <option value="Capítulo GTGL - 943">Capítulo GTGL</option>
+                            <option value="GCE-BA">Grande Conselho Estadual - BA</option>
+                            <option value="GC">Supremo Conselho</option>
+                            <option value="Outra">Outra</option>
                           </select>
                         </div>
 
                         <div style="margin-bottom: 1rem;" class="input-group input-group-lg btn-group btn-group-lg btn-group-toggle" data-toggle="buttons">
                             <label class="btn btn-secondary active">
-                                <input class="form-control" type="radio" name="tinscr" id="demolay" autocomplete="off" checked>DeMolay
+                                <input class="form-control" type="radio" name="tipo" value="demolay" autocomplete="off" checked>DeMolay
                             </label>
                             <label class="btn btn-secondary">
-                                <input class="form-control" type="radio" name="tinscr" id="macom" autocomplete="off">Maçom
+                                <input class="form-control" type="radio" name="tipo" value="maçom" autocomplete="off">Maçom
                             </label>
                             <label class="btn btn-secondary">
-                                <input class="form-control" type="radio" name="tinscr" id="outro" autocomplete="off">Outro
+                                <input class="form-control" type="radio" name="tipo" value="outro" autocomplete="off">Outro
                             </label>
                         </div>
 
@@ -121,52 +122,197 @@
                             <div class="input-group-prepend">
                                 <label class="input-group-text" for="sisdm">ID DeMolay</label>
                             </div>
-                            <input id="nome" type="number" class="form-control" aria-label="Text input with dropdown button">
+                            <input id="sisdm" name="sisdm" type="number" class="form-control" aria-label="Text input with dropdown button" placeholder="Código no SISDM">
                         </div>
 
                         <div class="input-group input-group-lg mb-3">
                             <div class="input-group-prepend">
                                 <label class="input-group-text" for="nome">Nome</label>
                             </div>
-                            <input id="nome" type="text" class="form-control" aria-label="Text input with dropdown button">
+                            <input id="nome" name="nome" type="text" class="form-control" aria-label="Insira o seu nome completo" required>
+                        </div>
+
+                        <div class="input-group input-group-lg mb-3">
+                            <div class="input-group-prepend">
+                                <label class="input-group-text" for="email">Email</label>
+                            </div>
+                            <input id="email" name="email" type="email" class="form-control" aria-label="Insira o seu endereço de email no formato correto" placeholder="Seu endereço de email"  required>
                         </div>
 
                         <fieldset class="form-group form-group-lg">
                             <legend>Kit CONROD</legend>
 
-                            <div class="btn-group btn-group-lg btn-group-toggle"  data-toggle="buttons" role="group" aria-label="...">.
+                            <div class="form-check">
+                                <div class="row">
+                                    <div class="col-8">
+                                        <input class="form-check-input" type="checkbox" id="camisa" name="camisa" value="25" checked>
+                                        <label class="form-check-label" for="camisa">
+                                          Camisa (R$ 25,00)
+                                        </label>
+                                    </div>
+                                    <div class="col-4">
+                                        <select class="custom-select" name="tamanho">
+                                            <option value="P">P</option>
+                                            <option value="M" selected>M</option>
+                                            <option value="G">G</option>
+                                            <option value="GG">GG</option>
+                                          </select>
+                                    </div>
+                                </div>
+                              </div>
+                              <br>
+                              <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="copo" name="copo" value="10" checked>
+                                    <label class="form-check-label" for="copo">
+                                        Copo (R$ 10,00)
+                                    </label>
+                              </div>
+                              <br>
+                              <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="pin" name="pin" value="10" checked>
+                                    <label class="form-check-label" for="pin">
+                                        Pin (R$ 10,00)
+                                    </label>
+                              </div>
 
-                                <label class="btn btn-secondary active">
-                                    <input type="checkbox" checked autocomplete="off"> Camisa
-                                </label>
-                                <label class="btn btn-secondary active">
-                                    <input type="checkbox" checked autocomplete="off"> Caneca
-                                </label>
-                                <label class="btn btn-secondary active">
-                                    <input type="checkbox" checked autocomplete="off"> Pin
-                                </label>
-                            </div>
-
-                            <div style="margin-top: 1rem;" class="btn-group btn-group-lg">
-                                    <button class="btn btn-lg btn-primary">Kit completo</button>
-                                    <button class="btn btn-lg btn-danger">Sem o kit</button>
-                            </div>
+                            <br>
+                            <div class="row" style="text-align: center;">
+                                <div class="col"><button onclick="semKit()" class="btn btn-outline-danger">Sem o Kit <br><span style="font-size: 0.8rem;">Sem desconto</span></button></div>
+                                <div class="col"><button onclick="selKit()" class="btn btn-outline-success">Kit completo<br><span style="font-size: 0.8rem;">Desconto de R$ 10,00</span></button></div>
+                            </div>     
                             
-                            
+                            <input type="hidden" name="inscricao" value="30">
                         </fieldset>
-
-                        <label>Total: <span>R$ 60,00</span>.</label>
-                        <button class="btn btn-success btn-lg">Enviar</button>
-                        
-
+                        <div class="row" style="text-align: center;">
+                            <div class="col">
+                                <label id="resultado">Total: <span id="valorinsc">R$ 60,00</span>.</label>
+                            </div>
+                            <input type="hidden" name="total" value="65">
+                            <div class="col">
+                                <button id="enviar" disabled class="btn btn-success btn-lg">Enviar</button>
+                            </div>
+                        </div>
                 </form>
             </div>
+        </section>
+
+        <section id="confirmacao-sec">
+            <div  class="container container-fluid">
+                <h1>Confirme sua Inscrição</h1>
+
+                <p>
+                    Verifique seus dados abaixo antes e confirme no botão logo a seguir.
+                </p>
+
+                <ul>
+                    <li>Org: <span id="org"></span></li>
+                    <li>Tipo: <span id="tipo"></span></li>
+                    <li>ID DeMolay: <span id="sisdm"></span></li>
+                    <li>Nome: <span id="nome"></span></li>
+                    <li>Email: <span id="email"></span></li>
+                    <li>Kit: <span id="kit"></span></li>
+                    <li>Valor: <span id="valor"></span></li>
+                </ul>
+                <div class="row">
+                        <div class="col">
+                            <button id="cancelar" class="btn btn-danger btn-lg">Corrigir</button>        
+                        </div>
+                        <div class="col">
+                            <button id="enviar" class="btn btn-success btn-lg">Confirmar</button>        
+                        </div>
+                </div>
+                
+            </div>
+        </section>
+
+        <section id="falhaNaInscricao-sec">
+            <div  class="container container-fluid">
+                <h1>Falha na inscrição</h1>
+                <br><br>
+                <div class="alert alert-danger" role="alert">
+                    Ocorreu uma falha no sistema de inscrição. 
+                    <br>
+                    Por favor, verifique a sua conexão com a Internet ou se
+                    este email já foi utilizado para uma inscrição anterior 
+                    e tente mais tarde!
+                </div>
+            </div>
+        </section>
+
+        <section id="inscrefetuada-sec">
+            <div  class="container container-fluid">
+                <h1>Inscrição efetuada</h1>
+
+                <p  class="alert alert-success" role="alert">
+                    Sua inscrição foi efetuada com sucesso. Para concluir, realize o depósito de 
+                    <b><span id="valor"></span></b> nas contas listadas a seguir e envie o
+                    comprovante para <b>gtgl943@gmail.com</b> informando o seu nome, email e 
+                    ID DeMolay (se tiver cadastro no SISDM).
+                </p>
+
+                <div class="row bancos">
+                    <div class="col-4">
+                        <img src="./nubank.png">
+                    </div>
+                    <div class="col-8">
+                            Ag: 0001, CC: 0000 <br>
+                            <a href="#">Pagar no app</a>
+                    </div>
+                </div>
+
+                <div class="row bancos">
+                    <div class="col-4">
+                        <img src="./inter.png">
+                    </div>
+                    <div class="col-8">
+                            Ag: 0001, CC: 0000 <br>
+                            <a href="#">Pagar no app</a>
+                    </div>
+                </div>
+
+                <div class="row bancos">
+                    <div class="col-4">
+                        <img src="./picpay.png">
+                    </div>
+                    <div class="col-8">
+                            Ag: 0001, CC: 0000 <br>
+                            <a href="#">Pagar no app</a>
+                    </div>
+                </div>
+
+                <div class="row bancos">
+                    <div class="col-4">
+                        <img src="./bradesco.png">
+                    </div>
+                    <div class="col-8">
+                            Ag: 0001, CC: 0000
+                    </div>
+                </div>
+
+
+                <div class="row bancos">
+                    <div class="col-4">
+                        <img src="./bb.png">
+                    </div>
+                    <div class="col-8">
+                            Ag: 0001, CC: 0000
+                    </div>
+                </div>
+                        
+            </div>        
         </section>
     </body>
 
     <script src="http://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/7.5.0/firebase-app.js"></script>
+
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+    <script src="https://www.gstatic.com/firebasejs/7.5.0/firebase-analytics.js"></script>
 
     <script src="function.js"></script>
 </html>
