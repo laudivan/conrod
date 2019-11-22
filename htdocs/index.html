@@ -4,6 +4,9 @@
         <title>VI CONRODE</title>
         <meta charset="utf8">
         <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1">
+        <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+        <meta http-equiv="Pragma" content="no-cache">
+        <meta http-equiv="Expires" content="0">
 
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
         <link href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans:100,300,400,600&display=swap" rel="stylesheet"> 
@@ -24,7 +27,7 @@
             <nav class="nav flex-column">
                 <a id="inicio" class="nav-link active">Início</a>
                 <a id="kit" class="nav-link disabled" aria-disabled="true">Kit CONRODE</a>
-                <a id="inscricao" class="nav-link" aria-disabled="true">Inscrições (1º lote)</a>
+                <a id="inscricao" class="nav-link" aria-disabled="false">Inscrições (1º lote)</a>
                 <a id="desafios" class="nav-link disabled" aria-disabled="true">Desafios</a>
                 <a id="sobre" class="nav-link">Sobre</a>
             </nav>
@@ -35,8 +38,9 @@
 
                 <img id="conrod-log" src="./CONCROD.2020.plain.svg">
                 <div style="display:block; margin-top: 3rem;">
-                    <h3 id="relogio" style="color:#98aeb6;">Faltam <span>0</span> dias!</h3>
-                    <div style="color: #fff;">As inscrições estão fechadas, mas prepare-se pois o 1º lote abrirá em breve.</div>
+                    <div style="color: rgb(22, 150, 50); font-weight: 600;">As inscrições do 1º lote já estão abertas.</div>
+                    <br>
+                    <h4 id="relogio" style="color:#98aeb6;">Faltam <span>0</span> dias para o CONROD!</h4>
                 </div>
 
             </div>
@@ -111,7 +115,7 @@
                                 <input class="form-control" type="radio" name="tipo" value="demolay" autocomplete="off" checked>DeMolay
                             </label>
                             <label class="btn btn-secondary">
-                                <input class="form-control" type="radio" name="tipo" value="maçom" autocomplete="off">Maçom
+                                <input class="form-control" type="radio" name="tipo" value="macom" autocomplete="off">Maçom
                             </label>
                             <label class="btn btn-secondary">
                                 <input class="form-control" type="radio" name="tipo" value="outro" autocomplete="off">Outro
@@ -255,8 +259,8 @@
                         <img src="./nubank.png">
                     </div>
                     <div class="col-8">
-                            Ag: 0001, CC: 0000 <br>
-                            <a href="#">Pagar no app</a>
+                            Ag: 0001, CC: 1480191-0 <br>
+                            <a id="nubank" href="" target="_blank">Pagar no app</a>
                     </div>
                 </div>
 
@@ -265,8 +269,8 @@
                         <img src="./inter.png">
                     </div>
                     <div class="col-8">
-                            Ag: 0001, CC: 0000 <br>
-                            <a href="#">Pagar no app</a>
+                            Ag: 0001, CC: 2007343-7 <br>
+                            <a id="inter" href="" target="_blank">Pagar no app</a>
                     </div>
                 </div>
 
@@ -275,8 +279,7 @@
                         <img src="./picpay.png">
                     </div>
                     <div class="col-8">
-                            Ag: 0001, CC: 0000 <br>
-                            <a href="#">Pagar no app</a>
+                            <a id="picpay" href="" target="_blank">Pagar no app</a>
                     </div>
                 </div>
 
@@ -285,7 +288,8 @@
                         <img src="./bradesco.png">
                     </div>
                     <div class="col-8">
-                            Ag: 0001, CC: 0000
+                            Ag: 3584, CC: 60745-2
+                            Laudivan F Almeida
                     </div>
                 </div>
 
@@ -295,7 +299,8 @@
                         <img src="./bb.png">
                     </div>
                     <div class="col-8">
-                            Ag: 0001, CC: 0000
+                            Ag: 5749-5, CC: 33.648-3 <br>
+                            Laudivan F Almeida
                     </div>
                 </div>
                         
@@ -303,16 +308,23 @@
         </section>
     </body>
 
-    <script src="http://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script> 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 
     <!-- The core Firebase JS SDK is always required and must be listed first -->
-    <script src="https://www.gstatic.com/firebasejs/7.5.0/firebase-app.js"></script>
+    <script src="/__/firebase/7.5.0/firebase-app.js"></script>
 
     <!-- TODO: Add SDKs for Firebase products that you want to use
      https://firebase.google.com/docs/web/setup#available-libraries -->
-    <script src="https://www.gstatic.com/firebasejs/7.5.0/firebase-analytics.js"></script>
+    <script src="/__/firebase/7.5.0/firebase-analytics.js"></script>
 
-    <script src="function.js"></script>
+    <!-- Add Firebase products that you want to use -->
+    <script src="/__/firebase/7.5.0/firebase-auth.js"></script>
+    <script src="/__/firebase/7.5.0/firebase-firestore.js"></script>
+
+    <!-- Initialize Firebase -->
+    <script src="/__/firebase/init.js"></script>
+
+    <script defer src="function.js"></script>
 </html>

@@ -1,31 +1,12 @@
+
 const inscricaoSemDesconto = 75;
 
 var inscricao = {};
 
-// Your web app's Firebase configuration
-project = firebase.initializeApp({
-    apiKey: "AIzaSyCM3ofAPNlQIjElO8_fVuzEE2W_n2YvORQ",
-    authDomain: "conrod-e7885.firebaseapp.com",
-    databaseURL: "https://conrod-e7885.firebaseio.com",
-    projectId: "conrod-e7885",
-    storageBucket: "conrod-e7885.appspot.com",
-    messagingSenderId: "6702416620",
-    appId: "1:6702416620:web:2b7dd4c0606997b8f9dbc9",
-    measurementId: "G-6DPLCGWTXG"
-});
-
-console.log(project.name);
-
-project.analytics();
-  
-var db = project.firestore();
+var db = firebase.firestore();
 
 $(function() {
-    $.getJSON('http://worldtimeapi.org/api/timezone/america/bahia', function(data){
-        apitime = new Date(data.datetime).getTime();
-        conrodtime = new Date('2020-02-17').getTime();
-        $('#relogio span').html(Math.floor ((conrodtime - apitime) / 86400000))
-    });
+    getTime();
 
     $('section:not(#inicio-sec)').fadeIn().addClass('hidden');
 
@@ -186,13 +167,6 @@ function setInscricao () {
     $('#confirmacao-sec #kit').html(inscricao.kit.join(', '));
     $('#confirmacao-sec #valor').html('R$ ' + inscricao.valor + ',00');
     
-
-    /*
-    $.post('inscricaoconrod.php', {
-        'authcode': 0,
-        'inscricao': formData
-    }, sucesso, 'json');
-*/
     return false;
 }
 
@@ -200,15 +174,58 @@ function sucesso (data, textStatus, jqXHR) {
     console.log('Teste');
 }
 
+function selectURLPagamento (valor) {
+    var urlbank = [];
+
+    urlbank[65] = {
+        nubank: 'https://nubank.com.br/pagar/vq4f/VTekTTwm3y',
+        inter: 'http://www.bancointer.com.br/interpag/002.2.8f460705-e1c5-4da2-bce4-dd85c54cc038.6500',
+        picpay: 'https://picpay.me/vanlivre/65.0'
+    };
+
+    urlbank[55] = {
+        nubank: 'https://nubank.com.br/pagar/vq4f/vgeHpppfyi',
+        inter: 'http://www.bancointer.com.br/interpag/002.2.8f460705-e1c5-4da2-bce4-dd85c54cc038.5500',
+        picpay: 'https://picpay.me/vanlivre/55.0'
+    };
+
+    urlbank[50] = {
+        nubank: 'https://nubank.com.br/pagar/vq4f/SQj4jAivVK',
+        inter: 'http://www.bancointer.com.br/interpag/002.2.8f460705-e1c5-4da2-bce4-dd85c54cc038.5000',
+        picpay: 'https://picpay.me/vanlivre/50.0'
+    };
+
+    urlbank[40] = {
+        nubank: 'https://nubank.com.br/pagar/vq4f/0FwMQiLBib',
+        inter: 'http://www.bancointer.com.br/interpag/002.2.8f460705-e1c5-4da2-bce4-dd85c54cc038.4000',
+        picpay: 'https://picpay.me/vanlivre/40.0'
+    };
+
+    urlbank[30] = {
+        nubank: 'https://nubank.com.br/pagar/vq4f/OMotL5XMZV',
+        inter: 'http://www.bancointer.com.br/interpag/002.2.8f460705-e1c5-4da2-bce4-dd85c54cc038.3000',
+        picpay: 'https://picpay.me/vanlivre/30.0'
+    };
+
+    $('#inscrefetuada-sec #nubank').attr('href', urlbank[valor].nubank);
+    $('#inscrefetuada-sec #inter').attr('href', urlbank[valor].inter);
+    $('#inscrefetuada-sec #picpay').attr('href', urlbank[valor].picpay);
+}
+
+
 function enviarInscricao () {
     inscricao.pago = false;
 
-    db.collection(inscricao.tipo).doc(inscricao.email).set(inscricao)
+    console.log(JSON.stringify(inscricao));
+
+    db.collection(inscricao.tipo).add(inscricao)
     .then(function() {
 
         goToPage('#inscrefetuada-sec');
 
         $('#inscrefetuada-sec #valor').html('R$ ' + inscricao.valor + ',00');
+
+        selectURLPagamento (inscricao.valor);
 
         console.log("Document successfully written!");
     })
@@ -217,4 +234,10 @@ function enviarInscricao () {
 
         console.error("Error writing document: ", error);
     });
+}
+
+function getTime () {
+    apitime = new Date().getTime();
+    conrodtime = new Date('2020-02-17').getTime();
+    $('#relogio span').html(Math.floor ((conrodtime - apitime) / 86400000))
 }
