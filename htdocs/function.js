@@ -1,5 +1,6 @@
 
-const inscricaoSemDesconto = 75;
+var inscricaoSemDesconto = 0;
+var inscricaoCONROD = 0;
 
 var inscricao = {};
 
@@ -31,8 +32,10 @@ $(function() {
         }
     });
 
-    $('#finscricao input').change (validarInscricao);
+    $('#finscricao select, #finscricao input[type=radio], #finscricao input[type=checkbox]').change (validarInscricao);
 
+    $('#finscricao #email, #finscricao #nome').keyup(validarInscricao);
+        
     $('#finscricao').submit(setInscricao);
 
     $('#confirmacao-sec #cancelar').click (function(){
@@ -40,6 +43,8 @@ $(function() {
     });
 
     $('#confirmacao-sec #enviar').click (enviarInscricao);
+
+    getLote();
 
 });
 
@@ -103,10 +108,25 @@ function validarInscricao () {
     $('select[name=tamanho').prop('disabled', ! $('input[name=camisa').prop('checked') );
     
     if (
-        $('#nome').val().trim() != "" && 
-        $('#email').val().trim() != ""
+        $('#nome').val().trim().length > 10 && 
+        $('#email').val().trim().length > 10
     ) {
-        $('#enviar').prop('disabled', false);
+        db.collection('inscricoes').doc($('#email').val().trim()).get().then(function (doc){
+            if (doc.exists) {
+                $('#enviar').prop('disabled', true);
+    
+                $('#email').popover('show');
+            } else {
+                $('#enviar').prop('disabled', false);
+    
+                $('#email').popover('hide');
+            }
+        }).catch(function(error){
+            $('#enviar').prop('disabled', false);
+
+            console.log("Error getting document:", error);
+        });
+        
     } else {
         $('#enviar').prop('disabled', true);
     }
@@ -115,7 +135,7 @@ function validarInscricao () {
 }
 
 function somarKit () {
-    kit = $('#finscricao fieldset input[type=checkbox], #finscricao fieldset input[type=hidden]').serializeArray();
+    kit = $('#finscricao fieldset input[type=checkbox], #finscricao fieldset input[name=inscricao]').serializeArray();
 
     kitsum = kit.map(item => item.value).reduce((prev, next) => parseInt(prev) + parseInt(next));
 
@@ -151,8 +171,8 @@ function setInscricao () {
         org: $('#finscricao select[name=org]').val(),
         tipo: $('#finscricao input[name=tipo]:checked').val(),
         sisdm: $('#finscricao input[name=sisdm]').val(),
-        nome: $('#finscricao input[name=nome]').val(),
-        email: $('#finscricao input[name=email]').val(),
+        nome: $('#finscricao input[name=nome]').val().trim(),
+        email: $('#finscricao input[name=email]').val().trim(),
         kit: auxkit,
         valor: $('#finscricao input[name=total]').val()
     }
@@ -208,17 +228,17 @@ function selectURLPagamento (valor) {
     };
 
     $('#inscrefetuada-sec #nubank').attr('href', urlbank[valor].nubank);
-    $('#inscrefetuada-sec #inter').attr('href', urlbank[valor].inter);
+    //$('#inscrefetuada-sec #inter').attr('href', urlbank[valor].inter);
     $('#inscrefetuada-sec #picpay').attr('href', urlbank[valor].picpay);
 }
 
 
 function enviarInscricao () {
     inscricao.pago = false;
+    inscricao.boleto = false;
+    inscricao.time = firebase.firestore.Timestamp.now();
 
-    console.log(JSON.stringify(inscricao));
-
-    db.collection(inscricao.tipo).add(inscricao)
+    db.collection('inscricoes').doc(inscricao.email).set(inscricao)
     .then(function() {
 
         goToPage('#inscrefetuada-sec');
@@ -240,4 +260,45 @@ function getTime () {
     apitime = new Date().getTime();
     conrodtime = new Date('2020-02-17').getTime();
     $('#relogio span').html(Math.floor ((conrodtime - apitime) / 86400000))
+}
+
+function existeEmail (email) {
+    
+
+}
+
+function getLote () {
+    agora = new Date().getTime();
+    //agora = new Date('2019-12-22').getTime();
+    inicio1lote = new Date('2019-11-22').getTime();
+    inicio2lote = new Date('2019-12-21').getTime();
+    fimDasInscricoes = new Date('2020-01-14').getTime();
+
+    if ( agora < inicio1lote) {
+        $('header #inscricao').html('Inscrições em breve');
+    } else if ( agora < inicio2lote ) {
+        $('header #inscricao').removeClass('disabled');
+        $('header #inscricao').html('Inscrições (1º lote)');
+
+        $('#inicio-sec #lotemsg').addClass('inscricoes_abertas').html('Estão abertas as inscrições do 1º lote (até 21 de dezembro).');
+
+        inscricaoSemDesconto = 75;
+        inscricaoCONROD = 30;
+
+        $('#finscricao fieldset input[name=inscricao]').attr ('value', inscricaoCONROD);
+    } else if ( agora < fimDasInscricoes ) {
+        $('header #inscricao').removeClass('disabled');
+        $('header #inscricao').html('Inscrições (2º lote)');
+
+        $('#inicio-sec #lotemsg').addClass('inscricoes_abertas').html('Estão abertas as inscrições do 2º e último lote (até 14 de janeiro).');
+
+        inscricaoSemDesconto = 85;
+        inscricaoCONROD = 40;
+        $('#finscricao fieldset input[name=inscricao]').attr ('value', inscricaoCONROD);
+    } else {
+        $('header #inscricao').addClass('disabled').html('Inscrições encerradas');
+
+        $('#inicio-sec #lotemsg').addClass('inscricoes_encerradas').html('Inscrições encerradas');
+        
+    } 
 }

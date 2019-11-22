@@ -220,3 +220,11 @@ ul li span {
 .bancos img {
     width: 100%;
 }
+
+.inscricoes_abertas {
+    color: rgb(22, 150, 50); font-weight: 600;
+}
+
+.inscricoes_encerradas {
+    color: rgb(150, 22, 22); font-weight: 600;
+}

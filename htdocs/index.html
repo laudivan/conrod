@@ -27,8 +27,8 @@
             <nav class="nav flex-column">
                 <a id="inicio" class="nav-link active">Início</a>
                 <a id="kit" class="nav-link disabled" aria-disabled="true">Kit CONRODE</a>
-                <a id="inscricao" class="nav-link" aria-disabled="false">Inscrições (1º lote)</a>
-                <a id="desafios" class="nav-link disabled" aria-disabled="true">Desafios</a>
+                <a id="inscricao" class="nav-link disabled">Inscrições</a>
+                <a id="desafios" class="nav-link disabled">Desafios</a>
                 <a id="sobre" class="nav-link">Sobre</a>
             </nav>
         </header>
@@ -38,7 +38,7 @@
 
                 <img id="conrod-log" src="./CONCROD.2020.plain.svg">
                 <div style="display:block; margin-top: 3rem;">
-                    <div style="color: rgb(22, 150, 50); font-weight: 600;">As inscrições do 1º lote já estão abertas.</div>
+                    <div id="lotemsg"></div>
                     <br>
                     <h4 id="relogio" style="color:#98aeb6;">Faltam <span>0</span> dias para o CONROD!</h4>
                 </div>
@@ -140,7 +140,12 @@
                             <div class="input-group-prepend">
                                 <label class="input-group-text" for="email">Email</label>
                             </div>
-                            <input id="email" name="email" type="email" class="form-control" aria-label="Insira o seu endereço de email no formato correto" placeholder="Seu endereço de email"  required>
+                            <input id="email" name="email" type="email" class="form-control" 
+                                aria-label="Insira o seu endereço de email no formato correto" 
+                                placeholder="Seu endereço de email"  required
+                                data-container="body" data-toggle="popover" data-placement="bottom" 
+                                data-content="Email usado em outra inscrição."
+                                >
                         </div>
 
                         <fieldset class="form-group form-group-lg">
@@ -185,13 +190,13 @@
                                 <div class="col"><button onclick="selKit()" class="btn btn-outline-success">Kit completo<br><span style="font-size: 0.8rem;">Desconto de R$ 10,00</span></button></div>
                             </div>     
                             
-                            <input type="hidden" name="inscricao" value="30">
+                            <input type="hidden" name="inscricao" value="0">
                         </fieldset>
                         <div class="row" style="text-align: center;">
                             <div class="col">
-                                <label id="resultado">Total: <span id="valorinsc">R$ 60,00</span>.</label>
+                                <label id="resultado">Total: <span id="valorinsc">R$ 0,00</span>.</label>
                             </div>
-                            <input type="hidden" name="total" value="65">
+                            <input type="hidden" name="total" value="">
                             <div class="col">
                                 <button id="enviar" disabled class="btn btn-success btn-lg">Enviar</button>
                             </div>
@@ -269,8 +274,7 @@
                         <img src="./inter.png">
                     </div>
                     <div class="col-8">
-                            Ag: 0001, CC: 2007343-7 <br>
-                            <a id="inter" href="" target="_blank">Pagar no app</a>
+                            Ag: 0001, CC: 2007343-7
                     </div>
                 </div>
 
