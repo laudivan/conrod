@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <title>VI CONRODE: Lista de inscritos</title>
+        <meta charset="utf8">
+        <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1">
+        <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+        <meta http-equiv="Pragma" content="no-cache">
+        <meta http-equiv="Expires" content="0">
+
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <link href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans:100,300,400,600&display=swap" rel="stylesheet"> 
+        
+        <link rel="stylesheet" href="./stylesheet.css">
+
+        <link rel="shortcut icon" type="image/x-icon" href="./favicon.ico">
+        <link rel="apple-touch-icon" sizes="72x72" href="./icon-72x72.png">
+        <link rel="apple-touch-icon" sizes="114x114" href="./icon-114x114.png">
+        <link rel="icon" sizes="72x72"href="./icon-72x72.png">
+        <link rel="icon" sizes="114x114"href="./icon-114x114.png">
+        <meta name="msapplication-square70x70logo" content="./icon-70x70.png"/>
+        <meta name="msapplication-square150x150logo" content="./icon-150x150.png"/>
+    </head>
+    <body>
+        <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
+          <a class="navbar-brand" href="#"><span id="listaid">Inscritos</span> (<span id="totaldalista"></span>)</a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav bg-dark">
+              <li class="nav-item">
+                <a class="nav-link" onclick="listaTodos()">Todos</span></a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" onclick="listaPagos(true)">Pagos</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link"  onclick="listaPagos(false)">A pagar</a>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Por organização</a>
+                <div class="dropdown-menu bg-dark">
+                  <a class="nav-link"  onclick="listaOrg('Capítulo GTGL - 943', 'GTGL')">Cap GTGL</a>
+                  <a class="nav-link"  onclick="listaOrg('Capítulo Casa Nova - 760', 'Cap Casa Nova')">Cap Casa Nova</a>
+                  <a class="nav-link"  onclick="listaOrg('Capítulo Juazeiro - 338', 'Cap Juazeiro')">Cap Juazeiro</a>
+                  <a class="nav-link"  onclick="listaOrg('Capítulo Remanso - 769', 'Cap Remanso')">Cap Remanso</a>
+                  <a class="nav-link"  onclick="listaOrg('Capítulo Petrolina - 023', 'Cap Petrolina')">Cap Petrolina</a>
+                  <a class="nav-link"  onclick="listaOrg('Capítulo Guerreiros - 490', 'Cap Guerreiros')">Cap Guerreiros</a>
+                  <!--<div class="dropdown-divider"></div>-->
+                  <a class="nav-link"  onclick="listaOrg('GCE-BA', 'GCE/BA')">GCE-BA</a>
+                  <a class="nav-link"  onclick="listaOrg('SC', 'S.Conselho')">Supremo Conselho</a>
+                  <a class="nav-link"  onclick="listaOrg('Outra', 'Outros')">Outros</a>
+                </div>
+            </ul>
+          </div>
+        </nav>
+
+        <div class="contents" style="margin-top: 3.5rem;">
+            <div class="list-group" id="linsc"></div>
+        </div>
+
+    </body>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script> 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="/__/firebase/7.5.0/firebase-app.js"></script>
+
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+    <script src="/__/firebase/7.5.0/firebase-analytics.js"></script>
+
+    <!-- Add Firebase products that you want to use -->
+    <script src="/__/firebase/7.5.0/firebase-auth.js"></script>
+    <script src="/__/firebase/7.5.0/firebase-firestore.js"></script>
+
+    <!-- Initialize Firebase -->
+    <script src="/__/firebase/init.js"></script>
+
+    <script>
+        var db = firebase.firestore();
+
+        function query (querySnapshot) {
+                $('#linsc').empty();
+
+                $('#totaldalista').html(querySnapshot.size);
+
+                querySnapshot.forEach(function(doc) {
+                insc = doc.data();
+
+                tipoinsc = insc.tipo == 'macom' ? 'maçom' : insc.tipo;
+
+                $('#linsc').append(
+                    '<a href="#" class="list-group-item list-group-item-action">' +
+                    '<div class="d-flex w-100 justify-content-between">' +
+                    '<h5 class="mb-1"><b>' + insc.sisdm + '</b> ' + insc.nome + ' ('+ tipoinsc +')</h5>' +
+                    '<small class="btn btn-' + (insc.pago? 'success': 'warning ') + '">' 
+                        + 'R$ ' + insc.valor + ',00' + 
+                        '</small>' +
+                    '</div>' +
+                    '<h6>' + insc.email + '</h6>' +
+                    '<p>Org: ' + insc.org + '</p>' +
+                    '<small>' + 'Kit: ' + ( insc.kit.length ? insc.kit.join(", ").replace('camisa, ', 'camisa tam ') : 'Sem kit' ) + '</small>' +
+                    '</a>'
+                );
+            });
+        }
+
+        function listaTodos () {
+            $('#listaid').html('Inscritos')
+            db.collection("inscricoes").orderBy('pago', 'desc').get().then(query);
+        }
+
+        function listaPagos (pago) {
+            $('#listaid').html(pago ? 'Pagantes' : 'Devedores')
+            db.collection("inscricoes").where("pago", "==", pago).orderBy('org').get().then(query);
+        }
+
+        function listaOrg (org, nome) {
+            $('#listaid').html(nome)
+            db.collection("inscricoes").where("org", "==", org).get().then(query);
+        }
+
+        listaTodos();
+
+        $(function(){
+
+        });
+
+    </script>
+</html>

@@ -61,6 +61,10 @@ function menuToggle () {
 	}
 }
 
+/**
+ * Muda para a página passada em @param
+ * @param {*} targetPage 
+ */
 function goToPage (targetPage) {
     $('section:not(hidden)').fadeOut().addClass('hidden');
 
@@ -90,20 +94,25 @@ var getDeviceType = function(){
     }
 }
 
+/**
+ * Desmarca todos os itens do kit
+ */
 function semKit () {
     $('#camisa, #copo, #pin').prop( "checked", false );
     somarKit();
 }
 
+/**
+ * Seleciona o kit completo
+ */
 function selKit() {
     $('#camisa, #copo, #pin').prop( "checked", true );
     somarKit();
 }
 
-function calcInsc () {
-
-}
-
+/**
+ * Valida a inscrição
+ */
 function validarInscricao () {
     $('select[name=tamanho').prop('disabled', ! $('input[name=camisa').prop('checked') );
     
@@ -134,6 +143,9 @@ function validarInscricao () {
     somarKit();
 }
 
+/**
+ * Soma o valor do kit selecionado a inscrição
+ */
 function somarKit () {
     kit = $('#finscricao fieldset input[type=checkbox], #finscricao fieldset input[name=inscricao]').serializeArray();
 
@@ -151,6 +163,9 @@ function somarKit () {
 
 }
 
+/**
+ * Preapara os dados para a inscrição
+ */
 function setInscricao () {
     auxkit = [];
 
@@ -191,48 +206,39 @@ function setInscricao () {
 }
 
 function sucesso (data, textStatus, jqXHR) {
-    console.log('Teste');
+    //console.log('Teste');
 }
 
+/**
+ * Atualizar o 
+ * @param {*} valor 
+ */
 function selectURLPagamento (valor) {
     var urlbank = [];
 
-    urlbank[65] = {
-        nubank: 'https://nubank.com.br/pagar/vq4f/VTekTTwm3y',
-        inter: 'http://www.bancointer.com.br/interpag/002.2.8f460705-e1c5-4da2-bce4-dd85c54cc038.6500',
-        picpay: 'https://picpay.me/vanlivre/65.0'
-    };
+    inter = 'http://www.bancointer.com.br/interpag/002.2.8f460705-e1c5-4da2-bce4-dd85c54cc038.' + valor + '00';
+    picpay = 'https://picpay.me/vanlivre/' + valor + '.0';
 
-    urlbank[55] = {
-        nubank: 'https://nubank.com.br/pagar/vq4f/vgeHpppfyi',
-        inter: 'http://www.bancointer.com.br/interpag/002.2.8f460705-e1c5-4da2-bce4-dd85c54cc038.5500',
-        picpay: 'https://picpay.me/vanlivre/55.0'
-    };
+    nubank[75] = 'https://nubank.com.br/pagar/vq4f/VTekTTwm3y'; //TODO: definir url
 
-    urlbank[50] = {
-        nubank: 'https://nubank.com.br/pagar/vq4f/SQj4jAivVK',
-        inter: 'http://www.bancointer.com.br/interpag/002.2.8f460705-e1c5-4da2-bce4-dd85c54cc038.5000',
-        picpay: 'https://picpay.me/vanlivre/50.0'
-    };
+    nubank[65] = 'https://nubank.com.br/pagar/vq4f/VTekTTwm3y';
 
-    urlbank[40] = {
-        nubank: 'https://nubank.com.br/pagar/vq4f/0FwMQiLBib',
-        inter: 'http://www.bancointer.com.br/interpag/002.2.8f460705-e1c5-4da2-bce4-dd85c54cc038.4000',
-        picpay: 'https://picpay.me/vanlivre/40.0'
-    };
+    nubank[55] = 'https://nubank.com.br/pagar/vq4f/vgeHpppfyi';
 
-    urlbank[30] = {
-        nubank: 'https://nubank.com.br/pagar/vq4f/OMotL5XMZV',
-        inter: 'http://www.bancointer.com.br/interpag/002.2.8f460705-e1c5-4da2-bce4-dd85c54cc038.3000',
-        picpay: 'https://picpay.me/vanlivre/30.0'
-    };
+    nubank[50] = 'https://nubank.com.br/pagar/vq4f/SQj4jAivVK';
 
-    $('#inscrefetuada-sec #nubank').attr('href', urlbank[valor].nubank);
-    //$('#inscrefetuada-sec #inter').attr('href', urlbank[valor].inter);
-    $('#inscrefetuada-sec #picpay').attr('href', urlbank[valor].picpay);
+    nubank[40] = 'https://nubank.com.br/pagar/vq4f/0FwMQiLBib';
+
+    nubank[30] = 'https://nubank.com.br/pagar/vq4f/OMotL5XMZV';
+
+    $('#inscrefetuada-sec #nubank').attr('href', nubank[valor]);
+    //$('#inscrefetuada-sec #inter').attr('href', inter);
+    $('#inscrefetuada-sec #picpay').attr('href', picpay);
 }
 
-
+/**
+ * Finaliza o processo de inscrição enviando os dados para o firebase
+ */
 function enviarInscricao () {
     inscricao.pago = false;
     inscricao.boleto = false;
@@ -260,11 +266,6 @@ function getTime () {
     apitime = new Date().getTime();
     conrodtime = new Date('2020-02-17').getTime();
     $('#relogio span').html(Math.floor ((conrodtime - apitime) / 86400000))
-}
-
-function existeEmail (email) {
-    
-
 }
 
 function getLote () {

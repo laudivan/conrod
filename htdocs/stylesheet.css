@@ -228,3 +228,7 @@ ul li span {
 .inscricoes_encerradas {
     color: rgb(150, 22, 22); font-weight: 600;
 }
+
+#linsc a:nth-child(even), #linsc a:nth-child(even) p {
+    background-color: #acacac;
+}
