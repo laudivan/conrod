@@ -2,51 +2,34 @@
 var inscricaoSemDesconto = 0;
 var inscricaoCONROD = 0;
 
+var inicio1lote = new Date('2019-11-22').getTime();
+var inicio2lote = new Date('2020-01-01').getTime();
+var fimDasInscricoes = new Date('2020-02-01').getTime();
+
 var inscricao = {};
 
-var db = firebase.firestore();
+var db = null;
 
-$(function() {
-    getTime();
+function initFirebase(persistent = false) {
+    db = firebase.firestore()
 
-    $('section:not(#inicio-sec)').fadeIn().addClass('hidden');
-
-    $('header span').click(menuToggle);
-
-    $('header nav a').click(function(event){
-        if ($(event.target).hasClass('active') || 
-            $(event.target).hasClass('disabled')) return;
-    
-        targetPage = '#' + $(event.target).attr('id') + '-sec';
-
-        $('header nav a.active').removeClass('active');
-
-        $(event.target).addClass('active');
-
-        goToPage(targetPage);
-
-        menuToggle();
-
-        if(targetPage == "#inscricao-sec") {
-            somarKit();
-        }
-    });
-
-    $('#finscricao select, #finscricao input[type=radio], #finscricao input[type=checkbox]').change (validarInscricao);
-
-    $('#finscricao #email, #finscricao #nome').keyup(validarInscricao);
-        
-    $('#finscricao').submit(setInscricao);
-
-    $('#confirmacao-sec #cancelar').click (function(){
-        goToPage('#inscricao-sec');
-    });
-
-    $('#confirmacao-sec #enviar').click (enviarInscricao);
-
-    getLote();
-
-});
+    if (persistent) {
+        db.enablePersistence()
+        .catch(function(err) {
+            console.log ('Ocorreu um erro: ' + err.code)
+            
+            if (err.code == 'failed-precondition') {
+                // Multiple tabs open, persistence can only be enabled
+                // in one tab at a a time.
+                // ...
+            } else if (err.code == 'unimplemented') {
+                // The current browser does not support all of the
+                // features required to enable persistence
+                // ...
+            }
+        });
+    }
+}
 
 /**
  * Exibe ou esconde o menu da aplicação.
@@ -117,27 +100,29 @@ function validarInscricao () {
     $('select[name=tamanho').prop('disabled', ! $('input[name=camisa').prop('checked') );
     
     if (
-        $('#nome').val().trim().length > 10 && 
+        $('#nome').val().trim().length > 5 && 
         $('#email').val().trim().length > 10
     ) {
+        
         db.collection('inscricoes').doc($('#email').val().trim()).get().then(function (doc){
+            
             if (doc.exists) {
-                $('#enviar').prop('disabled', true);
+                $('#btSetInscricao').prop('disabled', true);
     
                 $('#email').popover('show');
             } else {
-                $('#enviar').prop('disabled', false);
+                $('#btSetInscricao').prop('disabled', false);
     
                 $('#email').popover('hide');
             }
         }).catch(function(error){
-            $('#enviar').prop('disabled', false);
+            $('#btSetInscricao').prop('disabled', false);
 
             console.log("Error getting document:", error);
         });
         
     } else {
-        $('#enviar').prop('disabled', true);
+        $('#btSetInscricao').prop('disabled', true);
     }
 
     somarKit();
@@ -270,10 +255,6 @@ function getTime () {
 
 function getLote () {
     agora = new Date().getTime();
-    //agora = new Date('2019-12-22').getTime();
-    inicio1lote = new Date('2019-11-22').getTime();
-    inicio2lote = new Date('2019-12-21').getTime();
-    fimDasInscricoes = new Date('2020-01-14').getTime();
 
     if ( agora < inicio1lote) {
         $('header #inscricao').html('Inscrições em breve');
@@ -281,17 +262,25 @@ function getLote () {
         $('header #inscricao').removeClass('disabled');
         $('header #inscricao').html('Inscrições (1º lote)');
 
-        $('#inicio-sec #lotemsg').addClass('inscricoes_abertas').html('Estão abertas as inscrições do 1º lote (até 21 de dezembro).');
+        $('#inicio-sec #lotemsg').addClass('inscricoes_abertas').html('Estão abertas as inscrições do 1º lote até 31 de dezembro.');
 
         inscricaoSemDesconto = 75;
         inscricaoCONROD = 30;
+
+        $('.kitconrod').addClass('comkit')
+
+        selKit()
 
         $('#finscricao fieldset input[name=inscricao]').attr ('value', inscricaoCONROD);
     } else if ( agora < fimDasInscricoes ) {
         $('header #inscricao').removeClass('disabled');
         $('header #inscricao').html('Inscrições (2º lote)');
 
-        $('#inicio-sec #lotemsg').addClass('inscricoes_abertas').html('Estão abertas as inscrições do 2º e último lote (até 14 de janeiro).');
+        $('#inicio-sec #lotemsg').addClass('inscricoes_abertas').html('Estão abertas as inscrições do 2º e último lote, sem os kits, até 31 de janeiro.');
+
+        semKit()
+
+        $('.kitconrod').removeClass('comkit').addClass('semkit')
 
         inscricaoSemDesconto = 85;
         inscricaoCONROD = 40;

@@ -11,26 +11,26 @@
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
         <link href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans:100,300,400,600&display=swap" rel="stylesheet"> 
         
-        <link rel="stylesheet" href="./stylesheet.css">
+        <link rel="stylesheet" href="./style/stylesheet.css">
 
         <link rel="shortcut icon" type="image/x-icon" href="./favicon.ico">
-        <link rel="apple-touch-icon" sizes="72x72" href="./icon-72x72.png">
-        <link rel="apple-touch-icon" sizes="114x114" href="./icon-114x114.png">
-        <link rel="icon" sizes="72x72"href="./icon-72x72.png">
-        <link rel="icon" sizes="114x114"href="./icon-114x114.png">
-        <meta name="msapplication-square70x70logo" content="./icon-70x70.png"/>
-        <meta name="msapplication-square150x150logo" content="./icon-150x150.png"/>
+        <link rel="apple-touch-icon" sizes="72x72" href="./images/icon-72x72.png">
+        <link rel="apple-touch-icon" sizes="114x114" href="./images/icon-114x114.png">
+        <link rel="icon" sizes="72x72"href="./images/icon-72x72.png">
+        <link rel="icon" sizes="114x114"href="./images/icon-114x114.png">
+        <meta name="msapplication-square70x70logo" content="./images/icon-70x70.png"/>
+        <meta name="msapplication-square150x150logo" content="./images/icon-150x150.png"/>
     </head>
     <body>
         <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
-          <a class="navbar-brand" href="#"><span id="listaid">Inscritos</span> (<span id="totaldalista"></span>)</a>
+          <a class="navbar-brand linscTopBar" href="#"><span id="listaid">Inscritos</span><span id="totaldalista"></span><span id="vlrpago"></span></a>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
           <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav bg-dark">
               <li class="nav-item">
-                <a class="nav-link" onclick="listaTodos()">Todos</span></a>
+                <a class="nav-link" onclick="listaTodos()">Todos</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" onclick="listaPagos(true)">Pagos</a>
@@ -82,30 +82,59 @@
     <script>
         var db = firebase.firestore();
 
+        db.enablePersistence()
+        .catch(function(err) {
+            console.log ('Ocorreu um erro: ' + err.code)
+            
+            if (err.code == 'failed-precondition') {
+                // Multiple tabs open, persistence can only be enabled
+                // in one tab at a a time.
+                // ...
+            } else if (err.code == 'unimplemented') {
+                // The current browser does not support all of the
+                // features required to enable persistence
+                // ...
+            }
+        });
+
+        var vlrpago = 0; 
+        var vlrareceber = 0;
+
+        function _queryPreencheLista(doc) {
+            insc = doc.data()
+            tipoinsc = insc.tipo == 'macom' ? 'maçom' : insc.tipo
+            
+            vlrpago += insc.pago ? parseInt(insc.valor) : 0;
+            vlrareceber += !insc.pago ? parseInt(insc.valor) : 0;
+
+            $('#vlrpago').html('R$ ' + vlrpago + ',00');
+
+            $('#linsc').append(
+                '<a href="#" class="list-group-item list-group-item-action">' +
+                '<div class="d-flex w-100 justify-content-between">' +
+                '<h5 class="mb-1"><b>' + insc.sisdm + '</b> ' + insc.nome + ' ('+ tipoinsc +')</h5>' +
+                '<small class="btn btn-' + (insc.pago? 'success': 'warning ') + '">' 
+                    + 'R$ ' + insc.valor + ',00' + 
+                    '</small>' +
+                '</div>' +
+                '<h6>' + insc.email + '</h6>' +
+                '<p>Org: ' + insc.org + '</p>' +
+                '<small>' + 'Kit: ' + ( insc.kit.length ? insc.kit.join(", ").replace('camisa, ', 'camisa tam ') : 'Sem kit' ) + '</small>' +
+                '</a>'
+            );
+          }
+
         function query (querySnapshot) {
-                $('#linsc').empty();
+                $('#linsc').empty()
 
-                $('#totaldalista').html(querySnapshot.size);
+                $('#totaldalista').html('(' + querySnapshot.size + ')')
 
-                querySnapshot.forEach(function(doc) {
-                insc = doc.data();
+                $('#vlrpago').html('R$ 0,00');
 
-                tipoinsc = insc.tipo == 'macom' ? 'maçom' : insc.tipo;
+                vlrpago = 0
+                vlrareceber = 0
 
-                $('#linsc').append(
-                    '<a href="#" class="list-group-item list-group-item-action">' +
-                    '<div class="d-flex w-100 justify-content-between">' +
-                    '<h5 class="mb-1"><b>' + insc.sisdm + '</b> ' + insc.nome + ' ('+ tipoinsc +')</h5>' +
-                    '<small class="btn btn-' + (insc.pago? 'success': 'warning ') + '">' 
-                        + 'R$ ' + insc.valor + ',00' + 
-                        '</small>' +
-                    '</div>' +
-                    '<h6>' + insc.email + '</h6>' +
-                    '<p>Org: ' + insc.org + '</p>' +
-                    '<small>' + 'Kit: ' + ( insc.kit.length ? insc.kit.join(", ").replace('camisa, ', 'camisa tam ') : 'Sem kit' ) + '</small>' +
-                    '</a>'
-                );
-            });
+                querySnapshot.forEach(_queryPreencheLista)
         }
 
         function listaTodos () {
