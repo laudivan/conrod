@@ -4,7 +4,7 @@ var inscricaoCONROD = 0;
 
 var inicio1lote = new Date('2019-11-22').getTime();
 var inicio2lote = new Date('2020-01-01').getTime();
-var fimDasInscricoes = new Date('2020-02-01').getTime();
+var fimDasInscricoes = new Date('2020-02-15').getTime();
 
 var inscricao = {};
 
@@ -276,7 +276,7 @@ function getLote () {
         $('header #inscricao').removeClass('disabled');
         $('header #inscricao').html('Inscrições (2º lote)');
 
-        $('#inicio-sec #lotemsg').addClass('inscricoes_abertas').html('Estão abertas as inscrições do 2º e último lote, sem os kits, até 31 de janeiro.');
+        $('#inicio-sec #lotemsg').addClass('inscricoes_abertas').html('Estão abertas as inscrições do 2º e último lote, sem os kits, até 14 de janeiro.');
 
         semKit()
 

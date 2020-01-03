@@ -278,11 +278,14 @@ ul li span {
     font-size: 0.8rem;
 }
 
-.kitconrod .semkit {
+.semkit {
     visibility: hidden;
+    height: 0;
+    padding: 0;
+    margin: 0;
 }
 
-.kitconrod .comkit {
+.comkit {
     visibility: visible;
 }
 
