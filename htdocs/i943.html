@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <title>VI CONRODE</title>
+        <meta charset="utf8">
+        <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1">
+        <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+        <meta http-equiv="Pragma" content="no-cache">
+        <meta http-equiv="Expires" content="0">
+
+        <link rel="stylesheet" href="./style/bootstrap.min.css">
+        
+        <link rel="stylesheet" href="./style/stylesheet.css">
+
+        <link rel="shortcut icon" type="image/x-icon" href="./favicon.ico">
+        <link rel="apple-touch-icon" sizes="72x72" href="./images/icon-72x72.png">
+        <link rel="apple-touch-icon" sizes="114x114" href="./images/icon-114x114.png">
+        <link rel="icon" sizes="72x72"href="./images/icon-72x72.png">
+        <link rel="icon" sizes="114x114"href="./images/icon-114x114.png">
+        <meta name="msapplication-square70x70logo" content="./images/icon-70x70.png"/>
+        <meta name="msapplication-square150x150logo" content="./images/icon-150x150.png"/>
+    </head>
+    <body>
+        <header class="">
+            <span>☰</span>
+            <nav class="nav flex-column">
+                <a id="inicio" class="nav-link active">Início</a>
+                <a id="kit" class="nav-link disabled" aria-disabled="true">Kit CONRODE</a>
+                <a id="inscricao" class="nav-link disabled">Inscrições</a>
+                <a id="comopagar" class="nav-link">Como pagar sua inscrição</a>
+                <a id="desafios" class="nav-link disabled">Desafios</a>
+                <a id="sobre" class="nav-link">Sobre</a>
+            </nav>
+        </header>
+
+        <section id="inicio-sec">
+            <div class="vcentering" style="width: 100%; text-align: center;">
+
+                <img id="conrod-log" src="./images/CONCROD.2020.plain.svg">
+                <div style="display:block; margin-top: 3rem;">
+                    <div id="lotemsg"></div>
+                    <br>
+                    <h4 id="relogio" style="color:#98aeb6;">Faltam <span>0</span> dias para o CONROD!</h4>
+                </div>
+
+            </div>
+        </section>
+
+        <section id="sobre-sec">
+            <div  class="container">
+                <h1>O CONRODE</h1>
+                <p>
+                    O CONRODE é o encontro regional da 10a Oficialaria Executiva do 
+                    Grande Conselho Estadual da Bahia.
+                </p>
+                <p>
+                    Trata-se de uma momento para reencontrar os irmãos de toda a região
+                    e nos preparmos para os desafios do novo ano.
+                </p>
+                <p>
+                    Em 2020, o CONROD será realizado na cidade de Sobradinho com a
+                    organização do Capítulo Guardiões Templários do Grande Lago.
+                </p>
+                <h2>Local</h2>
+                <p>
+                    O CONROD 2020 acontecerá no CEBEC, um espaço criado pela prefeitura
+                    para que os jovens da cidade tenham diversas atividades educativas e
+                    seja preparados para o futuro. Tudo a ver com a Ordem, não é mesmo?
+                </p>
+                    <a class="btn btn-outline-primary" style="font-weight: 400;" target="_blank" href="https://www.google.com/maps/place/9%C2%B028'33.5%22S+40%C2%B048'24.0%22W/@-9.4759646,-40.8072524,258m/data=!3m2!1e3!4b1!4m6!3m5!1s0x0:0x0!7e2!8m2!3d-9.4759663!4d-40.80666">
+                        📌 Clique aqui para ver como chegar lá!
+                    </a>
+            </div>
+        </section>
+
+        <section id="kit-sec">
+            <div  class="container">
+                <h1>Kit CONRODE</h1>
+            </div>
+    
+        </section>
+
+        <section id="desafios-sec">
+            <div  class="container">
+                <h1>Desafios</h1>
+            </div>
+
+        </section>
+
+        
+        <section id="inscricao-sec">
+            <div  class="container container-fluid">
+                <h1>Inscrição</h1>
+
+                <form id="finscricao">
+                        <div class="input-group input-group-lg mb-3">
+                          <div class="input-group-prepend">
+                            <label class="input-group-text" for="inputGroupSelect01">ORG</label>
+                          </div>
+                          <select name="org" class="custom-select" id="inputGroupSelect01">
+                            <option value="Capítulo Casa Nova - 760">Capítulo Casa Nova</option>
+                            <option value="Capítulo Juazeiro - 338">Capítulo Juazeiro</option>
+                            <option value="Capítulo Remanso - 769">Capítulo Remanso</option>
+                            <option value="Capítulo Petrolina - 023">Capítulo Petrolina</option>
+                            <option value="Capítulo Guerreiros - 490">Capítulo Guerreiros</option>
+                            <option value="Capítulo GTGL - 943">Capítulo GTGL</option>
+                            <option value="GCE-BA">Grande Conselho Estadual - BA</option>
+                            <option value="SC">Supremo Conselho</option>
+                            <option value="Outra">Outra</option>
+                          </select>
+                        </div>
+
+                        <div style="margin-bottom: 1rem;" class="input-group input-group-lg btn-group btn-group-lg btn-group-toggle" data-toggle="buttons">
+                            <label class="btn btn-secondary active">
+                                <input class="form-control" type="radio" name="tipo" value="demolay" autocomplete="off" checked>DeMolay
+                            </label>
+                            <label class="btn btn-secondary">
+                                <input class="form-control" type="radio" name="tipo" value="macom" autocomplete="off">Maçom
+                            </label>
+                            <label class="btn btn-secondary">
+                                <input class="form-control" type="radio" name="tipo" value="outro" autocomplete="off">Outro
+                            </label>
+                        </div>
+
+                        <div class="input-group input-group-lg mb-3">
+                            <div class="input-group-prepend">
+                                <label class="input-group-text" for="sisdm">ID DeMolay</label>
+                            </div>
+                            <input id="sisdm" name="sisdm" type="number" class="form-control" aria-label="Text input with dropdown button" placeholder="Código no SISDM">
+                        </div>
+
+                        <div class="input-group input-group-lg mb-3">
+                            <div class="input-group-prepend">
+                                <label class="input-group-text" for="nome">Nome</label>
+                            </div>
+                            <input id="nome" name="nome" type="text" class="form-control" aria-label="Insira o seu nome completo" required>
+                        </div>
+
+                        <div class="input-group input-group-lg mb-3">
+                            <div class="input-group-prepend">
+                                <label class="input-group-text" for="email">Email</label>
+                            </div>
+                            <input id="email" name="email" type="email" class="form-control" 
+                                aria-label="Insira o seu endereço de email no formato correto" 
+                                placeholder="Seu endereço de email"  required
+                                data-container="body" data-toggle="popover" data-placement="bottom" 
+                                data-content="Email usado em outra inscrição."
+                                >
+                        </div>
+
+                        <fieldset class="kitconrod" class="form-group form-group-lg">
+                            <legend>Kit CONROD</legend>
+
+                            <div class="form-check">
+                                <div class="row">
+                                    <div class="col-8">
+                                        <input class="form-check-input" type="checkbox" id="camisa" name="camisa" value="25" checked>
+                                        <label class="form-check-label" for="camisa">
+                                          Camisa (R$ 25,00)
+                                        </label>
+                                    </div>
+                                    <div class="col-4">
+                                        <select class="custom-select" name="tamanho">
+                                            <option value="P">P</option>
+                                            <option value="M" selected>M</option>
+                                            <option value="G">G</option>
+                                            <option value="GG">GG</option>
+                                          </select>
+                                    </div>
+                                </div>
+                              </div>
+                              <br>
+                              <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="copo" name="copo" value="10" checked>
+                                    <label class="form-check-label" for="copo">
+                                        Copo (R$ 10,00)
+                                    </label>
+                              </div>
+                              <br>
+                              <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="pin" name="pin" value="10" checked>
+                                    <label class="form-check-label" for="pin">
+                                        Pin (R$ 10,00)
+                                    </label>
+                              </div>
+
+                            <br>
+                            <div class="row" style="text-align: center;">
+                                <div class="col"><button onclick="semKit()" class="btn btn-outline-danger">Sem o Kit <br><span style="font-size: 0.8rem;">Sem desconto</span></button></div>
+                                <div class="col"><button onclick="selKit()" class="btn btn-outline-success">Kit completo<br><span style="font-size: 0.8rem;">Desconto de R$ 10,00</span></button></div>
+                            </div>     
+                            
+                            <input type="hidden" name="inscricao" value="0">
+                        </fieldset>
+                        <div class="row" style="text-align: center;">
+                            <div class="col">
+                                <label id="resultado">Total: <span id="valorinsc">R$ 0,00</span>.</label>
+                            </div>
+                            <input type="hidden" name="total" value="">
+                            <div class="col">
+                                <button id="btSetInscricao" disabled class="btn btn-success btn-lg">Enviar</button>
+                            </div>
+                        </div>
+                </form>
+            </div>
+        </section>
+
+        <section id="confirmacao-sec">
+            <div  class="container container-fluid">
+                <h1>Confirme sua Inscrição</h1>
+
+                <p>
+                    Verifique seus dados abaixo antes e confirme no botão logo a seguir.
+                </p>
+
+                <ul>
+                    <li>Org: <span id="org"></span></li>
+                    <li>Tipo: <span id="tipo"></span></li>
+                    <li>ID DeMolay: <span id="sisdm"></span></li>
+                    <li>Nome: <span id="nome"></span></li>
+                    <li>Email: <span id="email"></span></li>
+                    <li>Kit: <span id="kit"></span></li>
+                    <li>Valor: <span id="valor"></span></li>
+                </ul>
+                <div class="row">
+                        <div class="col">
+                            <button id="cancelar" class="btn btn-danger btn-lg">Corrigir</button>        
+                        </div>
+                        <div class="col">
+                            <button id="enviar" class="btn btn-success btn-lg">Confirmar</button>        
+                        </div>
+                </div>
+                
+            </div>
+        </section>
+
+        <section id="falhaNaInscricao-sec">
+            <div  class="container container-fluid">
+                <h1>Falha na inscrição</h1>
+                <br><br>
+                <div class="alert alert-danger" role="alert">
+                    Ocorreu uma falha no sistema de inscrição. 
+                    <br>
+                    Por favor, verifique a sua conexão com a Internet ou se
+                    este email já foi utilizado para uma inscrição anterior 
+                    e tente mais tarde!
+                </div>
+            </div>
+        </section>
+
+        <section id="comopagar-sec">
+            <div  class="container container-fluid">
+                <h1>Como pagar a inscrição</h1>
+
+                <p  class="alert alert-success" role="alert">
+                    Para pagar sua inscrição, realize o depósito do valor escolhido nas contas 
+                    listadas a seguir e envie o comprovante para 
+                    <b><a href="mailto:demolay.gtgl@gmail.com">demolay.gtgl@gmail.com</a></b> 
+                    informando o seu nome, email e 
+                    ID DeMolay (se tiver cadastro no SISDM).
+                </p>
+
+                <div class="row bancos">
+                    <div class="col-4">
+                        <img src="./images/nubank.png">
+                    </div>
+                    <div class="col-8">
+                            Ag: 0001, CC: 1480191-0 <br>
+                            <a id="nubank" href="https://nubank.com.br/pagar/vq4f/dpep6oq6Fo" target="_blank">Pagar no app</a>
+                    </div>
+                </div>
+
+                <div class="row bancos">
+                    <div class="col-4">
+                        <img src="./images/inter.png">
+                    </div>
+                    <div class="col-8">
+                            Ag: 0001, CC: 2007343-7
+                    </div>
+                </div>
+
+                <div class="row bancos">
+                    <div class="col-4">
+                        <img src="./images/picpay.png">
+                    </div>
+                    <div class="col-8">
+                            <a id="picpay" href="https://picpay.me/vanlivre" target="_blank">Pagar no app</a>
+                    </div>
+                </div>
+
+                <div class="row bancos">
+                    <div class="col-4">
+                        <img src="./images/bradesco.png">
+                    </div>
+                    <div class="col-8">
+                            Ag: 3584, CC: 60745-2
+                            Laudivan F Almeida
+                    </div>
+                </div>
+
+
+                <div class="row bancos">
+                    <div class="col-4">
+                        <img src="./images/bb.png">
+                    </div>
+                    <div class="col-8">
+                            Ag: 5749-5, CC: 33.648-3 <br>
+                            Laudivan F Almeida
+                    </div>
+                </div>
+                        
+            </div>        
+        </section>
+
+        <section id="inscrefetuada-sec">
+            <div  class="container container-fluid">
+                <h1>Inscrição efetuada</h1>
+
+                <p  class="alert alert-success" role="alert">
+                    Sua inscrição foi efetuada com sucesso. Para concluir, realize o depósito de 
+                    <b><span id="valor"></span></b> nas contas listadas a seguir e envie o
+                    comprovante para <b><a href="mailto:demolay.gtgl@gmail.com">demolay.gtgl@gmail.com</a></b> informando o seu nome, email e 
+                    ID DeMolay (se tiver cadastro no SISDM).
+                </p>
+
+                <div class="row bancos">
+                    <div class="col-4">
+                        <img src="./images/nubank.png">
+                    </div>
+                    <div class="col-8">
+                            Ag: 0001, CC: 1480191-0 <br>
+                            <a id="nubank" href="" target="_blank">Pagar no app</a>
+                    </div>
+                </div>
+
+                <div class="row bancos">
+                    <div class="col-4">
+                        <img src="./images/inter.png">
+                    </div>
+                    <div class="col-8">
+                            Ag: 0001, CC: 2007343-7
+                    </div>
+                </div>
+
+                <div class="row bancos">
+                    <div class="col-4">
+                        <img src="./images/picpay.png">
+                    </div>
+                    <div class="col-8">
+                            <a id="picpay" href="" target="_blank">Pagar no app</a>
+                    </div>
+                </div>
+
+                <div class="row bancos">
+                    <div class="col-4">
+                        <img src="./images/bradesco.png">
+                    </div>
+                    <div class="col-8">
+                            Ag: 3584, CC: 60745-2
+                            Laudivan F Almeida
+                    </div>
+                </div>
+
+
+                <div class="row bancos">
+                    <div class="col-4">
+                        <img src="./images/bb.png">
+                    </div>
+                    <div class="col-8">
+                            Ag: 5749-5, CC: 33.648-3 <br>
+                            Laudivan F Almeida
+                    </div>
+                </div>
+                        
+            </div>        
+        </section>
+    </body>
+
+    <script src="./javascript/jquery-3.4.1.min.js"></script> 
+    <script src="./javascript/popper.min.js"></script>
+    <script src="./javascript/bootstrap.min.js"></script>
+
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="/__/firebase/7.5.0/firebase-app.js"></script>
+
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+    <script src="/__/firebase/7.5.0/firebase-analytics.js"></script>
+
+    <!-- Add Firebase products that you want to use -->
+    <script src="/__/firebase/7.5.0/firebase-auth.js"></script>
+    <script src="/__/firebase/7.5.0/firebase-firestore.js"></script>
+
+    <!-- Initialize Firebase -->
+    <script src="/__/firebase/init.js"></script>
+
+    <script defer src="./javascript/function.js"></script>
+
+    <script>
+        inicio1lote = new Date('2020-01-01').getTime();
+        inicio2lote = new Date('2020-01-14').getTime();
+        fimDasInscricoes = new Date('2020-01-15').getTime();
+
+        $(function() {
+            initFirebase();
+
+            getTime();
+
+            $('section:not(#inicio-sec)').fadeIn().addClass('hidden');
+
+            $('header span').click(menuToggle);
+
+            $('header nav a').click(function(event){
+                if ($(event.target).hasClass('active') || 
+                    $(event.target).hasClass('disabled')) return;
+            
+                targetPage = '#' + $(event.target).attr('id') + '-sec';
+
+                $('header nav a.active').removeClass('active');
+
+                $(event.target).addClass('active');
+
+                goToPage(targetPage);
+
+                menuToggle();
+
+                if(targetPage == "#inscricao-sec") {
+                    somarKit();
+                }
+            });
+
+            $('#finscricao select, #finscricao input[type=radio], #finscricao input[type=checkbox]').change (validarInscricao);
+
+            $('#finscricao #email, #finscricao #nome').keyup(validarInscricao)
+
+            $('#finscricao #email, #finscricao #nome').change(validarInscricao)
+                
+            $('#finscricao').submit(function () { return false });
+
+            $('#btSetInscricao').click(setInscricao)
+
+            $('#confirmacao-sec #cancelar').click (function(){
+                goToPage('#inscricao-sec');
+            });
+
+            $('#confirmacao-sec #enviar').click (enviarInscricao);
+
+            getLote();
+
+        });
+    </script>
+</html>

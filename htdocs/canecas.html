@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <title>VI CONRODE: Lista de inscritos (canecas)</title>
+        <meta charset="utf8">
+        <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1">
+        <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+        <meta http-equiv="Pragma" content="no-cache">
+        <meta http-equiv="Expires" content="0">
+
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <link href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans:100,300,400,600&display=swap" rel="stylesheet"> 
+        
+        <link rel="stylesheet" href="./style/stylesheet.css">
+
+        <link rel="shortcut icon" type="image/x-icon" href="./favicon.ico">
+        <link rel="apple-touch-icon" sizes="72x72" href="./images/icon-72x72.png">
+        <link rel="apple-touch-icon" sizes="114x114" href="./images/icon-114x114.png">
+        <link rel="icon" sizes="72x72"href="./images/icon-72x72.png">
+        <link rel="icon" sizes="114x114"href="./images/icon-114x114.png">
+        <meta name="msapplication-square70x70logo" content="./images/icon-70x70.png"/>
+        <meta name="msapplication-square150x150logo" content="./images/icon-150x150.png"/>
+    </head>
+    <body>
+        <h2 style="color: #000; text-align: left;">Lista de canecas</h2>
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th scope="col">ID DeMolay</th>
+              <th scope="col">Nome</th>
+              <th scope="col">Pago</th>
+            </tr>
+          </thead>
+          <tbody id="linsc"></tbody>
+        </table>
+        <div class="content">
+          <h3 style="color: #000; text-align: left;">Total: <span id="resumo"></span></h3>
+        </h3>
+
+    </body>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script> 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="/__/firebase/7.5.0/firebase-app.js"></script>
+
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+    <script src="/__/firebase/7.5.0/firebase-analytics.js"></script>
+
+    <!-- Add Firebase products that you want to use -->
+    <script src="/__/firebase/7.5.0/firebase-auth.js"></script>
+    <script src="/__/firebase/7.5.0/firebase-firestore.js"></script>
+
+    <!-- Initialize Firebase -->
+    <script src="/__/firebase/init.js"></script>
+
+    <script>
+        var db = firebase.firestore();
+
+        var canecas = 0
+
+        var pagas = 0
+
+        db.enablePersistence()
+        .catch(function(err) {
+            console.log ('Ocorreu um erro: ' + err.code)
+            
+            if (err.code == 'failed-precondition') {
+                // Multiple tabs open, persistence can only be enabled
+                // in one tab at a a time.
+                // ...
+            } else if (err.code == 'unimplemented') {
+                // The current browser does not support all of the
+                // features required to enable persistence
+                // ...
+            }
+        });
+
+        ordem = 0
+
+        function _queryPreencheLista(doc) {
+            insc = doc.data()
+
+            if ( insc.kit.indexOf("copo") < 0 ) return;
+
+            ordem ++
+
+            canecas++
+
+            insc.pago && pagas++
+            
+            $('#linsc').append(
+                '<tr><th scope="row">' + ordem + '</th>' +
+                '<td>' + (insc.sisdm ? insc.sisdm + ' - ' : '') + insc.nome + '<br><small>' + insc.tipo + ' - '+ insc.org + '</small></td>' +
+                '<td>' + (insc.pago? 'sim': 'não ') + '</td>' +
+                '</tr>'
+            );
+          }
+
+        function query (querySnapshot) {
+                $('#linsc').empty()
+
+                querySnapshot.forEach(_queryPreencheLista)
+
+                $('#resumo').html( + canecas + ' canecas (' + pagas + ' pagas)')
+        }
+
+        function listaTodos () {
+            $('#listaid').html('Inscritos')
+            db.collection("inscricoes").orderBy('org', 'desc').get().then(query);
+        }
+
+        $(function(){
+          listaTodos();
+        });
+
+    </script>
+</html>

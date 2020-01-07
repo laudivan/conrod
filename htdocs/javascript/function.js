@@ -4,7 +4,7 @@ var inscricaoCONROD = 0;
 
 var inicio1lote = new Date('2019-11-22').getTime();
 var inicio2lote = new Date('2020-01-01').getTime();
-var fimDasInscricoes = new Date('2020-02-15').getTime();
+var fimDasInscricoes = new Date('2020-01-15').getTime();
 
 var inscricao = {};
 
